@@ -1,0 +1,9 @@
+FROM node:14-alpine
+WORKDIR /usr/src
+COPY GitWeb/package.json ./
+RUN npm install
+COPY GitWeb/ .
+RUN npm run build
+ 
+FROM nginx:stable-alpine
+COPY /dist /usr/share/nginx/html
